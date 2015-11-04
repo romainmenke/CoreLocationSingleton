@@ -25,7 +25,7 @@ class ViewController: UIViewController, TrackerDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        Tracker.shared.stop()
+        Tracker.shared.disconnect()
     }
     
     func speedUpdate(speed: CLLocationSpeed) {

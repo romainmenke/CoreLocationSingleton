@@ -23,6 +23,7 @@ class Tracker: NSObject, CLLocationManagerDelegate {
     
     var region : MKCoordinateRegion?
     var currentSpeed: CLLocationSpeed = CLLocationSpeed()
+    var location : CLLocation?
     
     weak var delegate : TrackerDelegate?
     
@@ -68,7 +69,7 @@ class Tracker: NSObject, CLLocationManagerDelegate {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         
         region = MKCoordinateRegion(center: coordinates2D, span: span)
-        
+        location = userLocation
         currentSpeed = userLocation.speed
         
         guard let del = delegate else {
@@ -120,15 +121,18 @@ class Tracker: NSObject, CLLocationManagerDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("loopUpdate"), userInfo: nil, repeats: true)
     }
     
+    internal func loopUpdate() {
+        manager.startUpdatingLocation()
+    }
+    
     func stop() {
         running = false
         shouldStart = false
         timer.invalidate()
     }
     
-    
-    internal func loopUpdate() {
-        manager.startUpdatingLocation()
+    func disconnect() {
+        self.delegate = nil
     }
 }
 

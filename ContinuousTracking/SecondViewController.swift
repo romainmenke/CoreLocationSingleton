@@ -16,16 +16,20 @@ class SecondViewController: UIViewController, TrackerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Tracker.shared.delegate = self
+        
+        if let location = Tracker.shared.location {
+            label.text = "la: \(location.coordinate.latitude) lo: \(location.coordinate.longitude)"
+        }
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
-        Tracker.shared.delegate = self
-        Tracker.shared.start()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        Tracker.shared.stop()
+        Tracker.shared.disconnect()
     }
 
     override func didReceiveMemoryWarning() {
