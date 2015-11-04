@@ -18,10 +18,8 @@ class SecondViewController: UIViewController, TrackerDelegate {
 
         Tracker.shared.delegate = self
         
-        if let location = Tracker.shared.location {
-            label.text = "la: \(location.coordinate.latitude) lo: \(location.coordinate.longitude)"
-        }
-        
+        label.text = "\(Tracker.shared.currentSpeed)"
+
         // Do any additional setup after loading the view.
     }
     
@@ -44,10 +42,11 @@ class SecondViewController: UIViewController, TrackerDelegate {
     }
     
     func speedUpdate(speed: CLLocationSpeed) {
+        label.text = "\(speed)"
     }
     
     func locationUpdate(location: CLLocation) {
-        label.text = "la: \(location.coordinate.latitude) lo: \(location.coordinate.longitude)"
+        
     }
 
     

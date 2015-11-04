@@ -6,6 +6,9 @@
 //  Copyright © 2015 Romain Menke. All rights reserved.
 //
 
+
+// set sim to bycicle ride or drive or...
+
 import UIKit
 import CoreLocation
 
@@ -29,10 +32,11 @@ class ViewController: UIViewController, TrackerDelegate {
     }
     
     func speedUpdate(speed: CLLocationSpeed) {
+        label.text = "\(speed)"
     }
     
     func locationUpdate(location: CLLocation) {
-        label.text = "la: \(location.coordinate.latitude) lo: \(location.coordinate.longitude)"
+
     }
     
     func noAuthorization() {
