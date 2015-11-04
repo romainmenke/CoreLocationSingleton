@@ -18,13 +18,13 @@ class ViewController: UIViewController, TrackerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Tracker.shared.start()
         
     }
     
     override func viewDidAppear(animated: Bool) {
         Tracker.shared.delegate = self
-        Tracker.shared.start()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -16,14 +16,15 @@ class SecondViewController: UIViewController, TrackerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Tracker.shared.delegate = self
-        
         label.text = "\(Tracker.shared.currentSpeed)"
-
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        
+        Tracker.shared.delegate = self
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -42,6 +43,7 @@ class SecondViewController: UIViewController, TrackerDelegate {
     }
     
     func speedUpdate(speed: CLLocationSpeed) {
+        print(speed)
         label.text = "\(speed)"
     }
     
